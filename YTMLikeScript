@@ -1,0 +1,36 @@
+// ==UserScript==
+// @require http://code.jquery.com/jquery-3.4.1.min.js
+// @name         ytsmscript
+// @namespace    https://www.ytmonster.net/exchange/likes
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://www.ytmonster.net/exchange/likes
+// @grant        none
+// ==/UserScript==
+
+
+
+$(window).on('load', function () //wait page load
+{
+    setTimeout(function() //wait 3 seconds for div load
+    {
+        document.getElementsByClassName('likeClick')[0].click(); // open like window
+        setTimeout(function() //wait 5s for the script to like
+        {
+            document.getElementsByClassName('verifyClick')[0].click(); //verify button click
+            setInterval(function()
+            {
+                setTimeout(function() //wait 3 seconds for div load
+                {
+                    document.getElementsByClassName('likeClick')[0].click(); // open sub window
+                    setTimeout(function() //wait 5s for the script to like
+                    {
+                        document.getElementsByClassName('verifyClick')[0].click(); //verify button click
+
+                    }, 5000);
+                  }, 3000);
+            }, 15000);
+        }, 5000);
+    }, 3000);
+});
