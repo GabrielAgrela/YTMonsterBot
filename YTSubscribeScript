@@ -1,0 +1,22 @@
+// ==UserScript==
+// @require http://code.jquery.com/jquery-3.4.1.min.js
+// @name         ytsscript
+// @namespace    https://www.youtube.com/*
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://www.youtube.com/*
+// @grant        none
+// ==/UserScript==
+
+$(window).on('load', function () //wait page load
+{
+    setTimeout(function() //wait 2 second page load for sure
+    {
+        document.getElementsByClassName('style-scope ytd-subscribe-button-renderer')[0].click(); // subscribe
+        setTimeout(function() //wait 112s to close tab
+        {
+            window.close();
+        }, 112000);
+    }, 2000);
+});
