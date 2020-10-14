@@ -10,27 +10,22 @@
 // ==/UserScript==
 
 
-
 $(window).on('load', function () //wait page load
 {
-    setTimeout(function() //wait 3 seconds for div load
+    like();
+});
+
+function like()
+{
+    setTimeout(function() //wait 10 seconds for div load
     {
-        document.getElementsByClassName('likeClick')[0].click(); // open like window
-        setTimeout(function() //wait 5s for the script to like
+        document.getElementsByClassName('likeClick')[0].click(); // open video tab
+        console.log("clicked sub");
+        setTimeout(function() //wait 20s to verify and loop
         {
             document.getElementsByClassName('verifyClick')[0].click(); //verify button click
-            setInterval(function()
-            {
-                setTimeout(function() //wait 3 seconds for div load
-                {
-                    document.getElementsByClassName('likeClick')[0].click(); // open sub window
-                    setTimeout(function() //wait 5s for the script to like
-                    {
-                        document.getElementsByClassName('verifyClick')[0].click(); //verify button click
-
-                    }, 5000);
-                  }, 3000);
-            }, 15000);
-        }, 5000);
-    }, 3000);
-});
+            console.log("clicked verify");
+            like();
+        }, 20000);
+    }, 10000);
+}
