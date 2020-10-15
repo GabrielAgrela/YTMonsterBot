@@ -17,6 +17,7 @@ $(window).on('load', function () //wait page load
 
 function like()
 {
+    nReps=0;
     setTimeout(function() //wait 10 seconds for div load
     {
         document.getElementsByClassName('likeClick')[0].click(); // open video tab
@@ -25,7 +26,47 @@ function like()
         {
             document.getElementsByClassName('verifyClick')[0].click(); //verify button click
             console.log("clicked verify");
-            like();
+            checkVerifyEnd();
         }, 20000);
     }, 10000);
+}
+
+var nReps = 0;
+function checkVerifyEnd()
+{
+    console.log("nReps: ", nReps);
+    if (nReps >10)// if stuck on verifying
+    {
+        document.getElementsByClassName('likeSkip')[0].click();
+        console.log("stuck, skip");
+        like();
+    }
+	else
+	{
+		console.log("waiting for verify");
+		setTimeout(function() //wait 2s for verifycation
+		{
+			if (document.getElementById('error').getAttribute("style")=="display: none;")// if error doesnt msg pop up
+			{
+				if(document.getElementsByClassName('likeClick')[0].getAttribute("style")=="display: none;") //if still verifying then loop
+				{
+					checkVerifyEnd();
+					nReps++;
+				}
+				else //if verifying finished, like next video
+				{
+					console.log("verified, next");
+					like();
+				}
+			}
+			else //if error msg pops up click next
+			{
+				document.getElementsByClassName('likeSkip')[0].click();
+				console.log("skiped, next");
+				like();
+			}
+
+		}, 2000);
+	}
+
 }
