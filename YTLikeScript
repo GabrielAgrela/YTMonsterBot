@@ -9,14 +9,13 @@
 // @grant        none
 // ==/UserScript==
 
-$(window).on('load', function () //wait page load
+
+setTimeout(function() //wait 2 second page load for sure
 {
-    setTimeout(function() //wait 2 second page load for sure
+    document.getElementsByClassName('style-scope ytd-toggle-button-renderer')[0].click();
+    setTimeout(function() //wait 20 to close
     {
-        document.getElementsByClassName('style-scope ytd-toggle-button-renderer')[0].click();
-        setTimeout(function() //wait 20 to close
-        {
-            window.close();
-        }, 20000);
-    }, 2000);
-});
+        window.close();
+    }, 20000);
+}, 2000);
+
